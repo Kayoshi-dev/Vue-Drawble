@@ -30,12 +30,12 @@ Examples are available in the src/App.vue file. (More to come)
 To get started with Vue Drawble, first install the package with your favorite package manager :
 
 ```bash
-npm i @kayoshi-dev/vue-drawble
+npm i vue-drawble
 ```
 
 Then you can import the VueDrawble component
 ```js
-import { VueDrawble } from '@kayoshi-dev/vue-drawble';
+import { VueDrawble } from 'vue-drawble';
 ```
 
 To use this component, simply add it to your template like this
