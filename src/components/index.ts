@@ -1,0 +1,1 @@
+export { default as VueDrawble } from './VueDrawble.vue';

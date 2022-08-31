@@ -1,0 +1,35 @@
+{
+  "name": "vue-drawble",
+  "private": true,
+  "version": "0.1.0",
+  "author": {
+    "name": "Kayoshi-dev",
+    "email": "maxime.jme@gmail.com",
+    "url": "https://github.com/Kayoshi-dev"
+  },
+  "files": ["dist"],
+  "main": "./dist/vue-drawble.umd.js",
+  "module": "./dist/vue-drawble.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/vue-drawble.es.js",
+      "require": "./dist/vue-drawble.umd.js"
+    }
+  },
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "vue": "^3.2.38"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.14",
+    "@vitejs/plugin-vue": "^3.0.3",
+    "typescript": "^4.8.2",
+    "vite": "^3.0.9",
+    "vue-tsc": "^0.40.4"
+  }
+}
