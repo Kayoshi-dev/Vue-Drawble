@@ -1,38 +1,39 @@
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed } from "vue";
 
 const props = defineProps({
-    columns: {
-      type: [Array, Object],
-      required: true
-    },
-    rows: {
-      type: Array,
-      required: true
-    },
-    firstLetterUppercase: {
-      type: Boolean,
-      required: false,
-      default: true
-    },
-    isFoldable: {
-      type: Boolean,
-      default: false
-    }
+  columns: {
+    type: [Array, Object],
+    required: true,
+  },
+  rows: {
+    type: Array,
+    required: true,
+  },
+  firstLetterUppercase: {
+    type: Boolean,
+    required: false,
+    default: true,
+  },
+  isFoldable: {
+    type: Boolean,
+    default: false,
+  },
 });
 
-const sortColumn = ref('');
-const isSortOrderAsc = ref(true);
-const search = ref('');
+const sortColumn = ref("");
+const isSortOrderAsc = ref(false);
+const search = ref("");
 
 const camelize = (str) => {
-  return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-    return index === 0 ? word.toLowerCase() : word.toUpperCase();
-  }).replace(/\s+/g, '');
-}
+  return str
+    .replace(/(?:^\w|[A-Z]|\b\w)/g, function (word, index) {
+      return index === 0 ? word.toLowerCase() : word.toUpperCase();
+    })
+    .replace(/\s+/g, "");
+};
 
 const sortBy = (type) => {
-  type = type.toLowerCase();
   if (sortColumn.value === type) {
     isSortOrderAsc.value = !isSortOrderAsc.value;
   }
@@ -65,7 +66,9 @@ const filteredData = computed(() => {
           :key="column"
           @click="sortBy(column)"
         >
-          <template v-if="firstLetterUppercase">{{ column.charAt(0).toUpperCase() + column.slice(1) }}</template>
+          <template v-if="firstLetterUppercase">{{
+            column.charAt(0).toUpperCase() + column.slice(1)
+          }}</template>
           <template v-else>{{ column }}</template>
         </th>
       </tr>
@@ -82,7 +85,7 @@ const filteredData = computed(() => {
       </tr>
     </thead>
     <tbody>
-      <template v-for="row in rows" :key="row.id">
+      <template v-for="row in filteredData" :key="row.id">
         <tr v-if="Array.isArray(columns)">
           <td v-for="col in columns" :key="col.id">
             <slot :name="camelize(col)" v-bind="row">{{ row[col] }}</slot>
@@ -96,14 +99,11 @@ const filteredData = computed(() => {
         </tr>
 
         <tr v-if="isFoldable" :id="`tr-panel-${row.id}`">
-          <td :colspan="columns.length">
-            Description : {{ row.description }}
-          </td>
+          <td :colspan="columns.length">Description : {{ row.description }}</td>
         </tr>
       </template>
     </tbody>
   </table>
 </template>
 
-<style>
-</style>
+<style></style>
